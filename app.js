@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const date=require(__dirname+'/date.js');
+const day=date.getDay();
 var items=['buy food','cook food','eat food'];
 var workItems=[];
 app.use(express.urlencoded({
@@ -8,14 +10,6 @@ app.use(express.urlencoded({
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.get('/', function (req, res) {
-    var today = new Date();
-    options = {
-        day: 'numeric',
-        weekday: 'long',
-        month: 'long',
-        year: 'numeric'
-    }
-    var day = today.toLocaleDateString('en-US', options);
     res.render('list', {
         listTitle: day,
         newListItems:items
@@ -40,9 +34,6 @@ app.post('/',function(req,res){
         res.redirect('/');
     }
 })
-// app.post('/work',function(req,res){
-//     res.render('list',{})
-// })
 app.listen(3000, function () {
     console.log('server running successfully');
 })
