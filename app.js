@@ -27,6 +27,9 @@ app.get('/work',function(req,res){
         newListItems:workItems
     });
 })
+app.get('/about',function(req,res){
+    res.render('about');
+})
 app.post('/',function(req,res){
     if(req.body.list==='work'){
         workItems.push(req.body.item);
